@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-@Catch() // BẮT MỌI LỖI
+@Catch() 
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -17,7 +17,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let message = 'Internal server error';
 
-    // Nếu là HttpException (NotFound, Conflict, BadRequest, ...)
     if (exception instanceof HttpException) {
       status = exception.getStatus();
       const res = exception.getResponse();
@@ -28,7 +27,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
           : (res as any).message ?? message;
     }
 
-    // Log để debug (rất quan trọng)
     console.error('❌ Exception:', exception);
 
     response.status(status).json({
