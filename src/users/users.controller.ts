@@ -1,4 +1,4 @@
-import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
+import { Body, Controller, DefaultValuePipe, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
 
 import { CreateUserDto } from "./dtos/create-user.dto";
 
@@ -31,4 +31,9 @@ export class UsersController {
     //     console.log(user);
     //     return "Updated Successfully!"
     // }
+
+    @Delete(':id')
+    public deleteUser(@Param('id', ParseIntPipe) id: number ) {
+        this.usersService.deleteUser(id);
+    }
 }

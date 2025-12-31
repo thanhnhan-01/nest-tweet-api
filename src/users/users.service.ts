@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, InternalServerErrorException } from "@nestjs/common";
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
@@ -26,16 +26,48 @@ export class UsersService {
             userDto.profile = userDto.profile ?? {};
 
             // Create User Object
-            let user = this.userRepository.create(userDto);
+            // let user = this.userRepository.create(userDto);
 
             // Save the user object
+            // return await this.userRepository.save(user);
+
+            const user = this.userRepository.create({
+                username: userDto.username,
+                email: userDto.email,
+                password: userDto.password,
+                profile: userDto.profile,
+            });
+
             return await this.userRepository.save(user);
+
         } catch (error) {
             if (error.code === 'ER_DUP_ENTRY') {
                 throw new ConflictException('Email or username already exists!');
             }
             throw new InternalServerErrorException(error.message);
         }
+    }
+
+    public async deleteUser(id: number) {
+        // Find the user with given ID
+            const user = await this.userRepository.findOne({
+                where: { id },
+                relations: ['profile'],
+            });
+    
+            if (!user) {
+                throw new NotFoundException('User not found');
+            }
+    
+            // Delete user
+            await this.userRepository.delete(id);
+    
+            // Delete profile if exists 
+            if (user.profile) {
+                await this.profileRepository.delete(user.profile.id);
+            }
+    
+            return { delete: true }
     }
 
 }
