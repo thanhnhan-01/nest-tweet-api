@@ -49,7 +49,8 @@ export class UsersService {
     }
 
     public async deleteUser(id: number) {
-        // Find the user with given ID
+        try {
+            // Find the user with given ID
             const user = await this.userRepository.findOne({
                 where: { id },
                 relations: ['profile'],
@@ -68,6 +69,12 @@ export class UsersService {
             }
     
             return { delete: true }
+        } catch (error) {
+            if (error instanceof NotFoundException) {
+                throw error;
+            }
+            throw new InternalServerErrorException(error.message);
+        }
     }
 
 }
