@@ -67,7 +67,7 @@ export class UsersService {
             if (user.profile) {
                 await this.profileRepository.delete(user.profile.id);
             }
-    
+
             return { delete: true }
         } catch (error) {
             if (error instanceof NotFoundException) {
