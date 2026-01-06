@@ -13,22 +13,28 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/user.entity';
 
 @Module({
-  imports: [UsersModule, ProfileModule, TweetModule, AuthModule, TypeOrmModule.forRootAsync({
-    imports: [],
-    inject: [],
-    useFactory: () => ({
-      type: "mysql",
-      // entities: [User],
-      autoLoadEntities: true,
-      synchronize: true,
-      host: "localhost",
-      port: 3306,
-      username: "user",
-      password: "password",
-      database: "tweet_api",
-    })
-  })],
+  imports: [
+    UsersModule,
+    ProfileModule,
+    TweetModule,
+    AuthModule,
+    TypeOrmModule.forRootAsync({
+      imports: [],
+      inject: [],
+      useFactory: () => ({
+        type: 'mysql',
+        // entities: [User],
+        autoLoadEntities: true,
+        synchronize: true,
+        host: 'localhost',
+        port: 3306,
+        username: 'user',
+        password: 'password',
+        database: 'tweet_api',
+      }),
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

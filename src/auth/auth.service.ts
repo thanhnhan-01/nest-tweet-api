@@ -3,11 +3,11 @@ import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
-    constructor(@Inject(forwardRef(() => UsersService)) private readonly userService: UsersService) { }
+  constructor(@Inject(forwardRef(() => UsersService)) private readonly userService: UsersService) {}
 
-    isAuthenticated: Boolean = false;
+  isAuthenticated: boolean = false;
 
-    login(email: String, pswd: String) {
-        return "User does not exist!";
-    }
+  login(email: string, pswd: string) {
+    return 'User does not exist!';
+  }
 }

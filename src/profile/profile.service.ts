@@ -6,13 +6,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ProfileService {
-    constructor(
-        @InjectRepository(Profile)
-        private readonly profileRepository: Repository<Profile>
-    ) { }
+  constructor(
+    @InjectRepository(Profile)
+    private readonly profileRepository: Repository<Profile>,
+  ) {}
 
-    public getAllProfiles() {
-        return this.profileRepository.find();
-    }
-
+  public getAllProfiles() {
+    return this.profileRepository.find({
+      relations: {},
+    });
+  }
 }

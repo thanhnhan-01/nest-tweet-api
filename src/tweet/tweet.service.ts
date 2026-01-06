@@ -3,9 +3,7 @@ import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class TweetService {
-    constructor(private readonly userService: UsersService) { }
+  constructor(private readonly userService: UsersService) {}
 
-    getTweets(userId: Number) {
-
-    }
-}   
+  getTweets(userId: number) {}
+}

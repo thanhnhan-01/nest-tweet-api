@@ -10,4 +10,4 @@ import { ProfileService } from './profile.service';
   providers: [ProfileService],
   imports: [TypeOrmModule.forFeature([Profile])],
 })
-export class ProfileModule { }
+export class ProfileModule {}

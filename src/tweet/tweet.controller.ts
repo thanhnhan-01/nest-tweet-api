@@ -5,12 +5,11 @@ import { TweetService } from './tweet.service';
 
 @Controller('tweet')
 export class TweetController {
-    constructor(private tweetService: TweetService) { }
+  constructor(private tweetService: TweetService) {}
 
-    // http://localhost:3000/tweet/10
-    @Get(":userid")
-    public GetTweets(@Param("userid", ParseIntPipe) userid: number) {
-        return this.tweetService.getTweets(userid);
-    }
-
+  // http://localhost:3000/tweet/10
+  @Get(':userid')
+  public GetTweets(@Param('userid', ParseIntPipe) userid: number) {
+    return this.tweetService.getTweets(userid);
+  }
 }
