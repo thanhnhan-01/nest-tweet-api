@@ -10,8 +10,6 @@ import { ProfileModule } from './profile/profile.module';
 import { TweetModule } from './tweet/tweet.module';
 import { UsersModule } from './users/users.module';
 
-import { User } from './users/user.entity';
-
 @Module({
   imports: [
     UsersModule,

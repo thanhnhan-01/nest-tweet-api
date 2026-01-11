@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
 
 import { Profile } from './profile.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ProfileService {
@@ -13,7 +14,9 @@ export class ProfileService {
 
   public getAllProfiles() {
     return this.profileRepository.find({
-      relations: {},
+      relations: {
+        user: true,
+      },
     });
   }
 }
