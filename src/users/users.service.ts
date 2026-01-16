@@ -16,13 +16,11 @@ export class UsersService {
 
     @InjectRepository(Profile)
     private profileRepository: Repository<Profile>,
-  ) {}
+  ) { }
 
-  getAllUsers() {
-    return this.userRepository.find({
-      relations: {
-        profile: true,
-      },
+  public async getAllUsers() {
+    return await this.userRepository.find({
+      relations: { profile: true },
     });
   }
 
@@ -31,12 +29,7 @@ export class UsersService {
       // Create a Profile & Save
       userDto.profile = userDto.profile ?? {};
 
-      // Create User Object
-      // let user = this.userRepository.create(userDto);
-
-      // Save the user object
-      // return await this.userRepository.save(user);
-
+      // Create User
       const user = this.userRepository.create({
         username: userDto.username,
         email: userDto.email,
@@ -44,6 +37,7 @@ export class UsersService {
         profile: userDto.profile,
       });
 
+      // Save the user object
       return await this.userRepository.save(user);
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {

@@ -1,6 +1,8 @@
-import { Profile } from 'src/profile/profile.entity';
-import { Tweet } from 'src/tweet/tweet.entity';
 import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { Profile } from 'src/profile/profile.entity';
+
+import { Tweet } from 'src/tweet/tweet.entity';
 
 @Entity()
 export class User {
@@ -30,10 +32,7 @@ export class User {
   })
   password: string;
 
-  @OneToOne(() => Profile, (profile) => profile.user, {
-    cascade: ['insert'],
-    // eager: true,
-  })
+  @OneToOne(() => Profile, (profile) => profile.user, { cascade: ['insert'] })
   profile?: Profile;
 
   @OneToMany(() => Tweet, (tweet) => tweet.user)
