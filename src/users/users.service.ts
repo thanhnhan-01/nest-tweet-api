@@ -1,11 +1,12 @@
 import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
 
 import { Profile } from 'src/profile/profile.entity';
-import { User } from 'src/users/user.entity';
 
 import { CreateUserDto } from 'src/users/dtos/create-user.dto';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -64,5 +65,9 @@ export class UsersService {
       }
       throw new InternalServerErrorException(error.message);
     }
+  }
+
+  public async findUserById(id: number) {
+    return await this.userRepository.findOneBy({ id });
   }
 }

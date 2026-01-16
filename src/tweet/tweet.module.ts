@@ -12,4 +12,4 @@ import { UsersModule } from 'src/users/users.module';
   providers: [TweetService],
   imports: [UsersModule, TypeOrmModule.forFeature([Tweet])],
 })
-export class TweetModule { }
+export class TweetModule {}

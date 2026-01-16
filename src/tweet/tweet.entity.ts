@@ -1,5 +1,6 @@
-import { User } from 'src/users/user.entity';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { User } from 'src/users/user.entity';
 
 @Entity()
 export class Tweet {
@@ -18,6 +19,6 @@ export class Tweet {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => User, (user) => user.tweets )
+  @ManyToOne(() => User, (user) => user.tweets)
   user: User;
 }
