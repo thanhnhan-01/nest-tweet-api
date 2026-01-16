@@ -1,5 +1,6 @@
 import { Profile } from 'src/profile/profile.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Tweet } from 'src/tweet/tweet.entity';
+import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -34,6 +35,9 @@ export class User {
     // eager: true,
   })
   profile?: Profile;
+
+  @OneToMany(() => Tweet, (tweet) => tweet.user)
+  tweets: Tweet[];
 
   @CreateDateColumn()
   createdAt: Date;
