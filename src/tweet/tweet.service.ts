@@ -3,10 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { CreateTweetDto } from 'src/tweet/dto/create-tweet.dto';
-import { Tweet } from 'src/tweet/tweet.entity';
+import { CreateTweetDto } from '@/tweet/dto/create-tweet.dto';
+import { Tweet } from '@/tweet/tweet.entity';
 
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '@/users/users.service';
 
 @Injectable()
 export class TweetService {

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Profile } from 'src/profile/profile.entity';
+import { Profile } from '@/profile/profile.entity';
 
-import { User } from 'src/users/user.entity';
-import { UsersController } from 'src/users/users.controller';
-import { UsersService } from 'src/users/users.service';
+import { User } from '@/users/user.entity';
+import { UsersController } from '@/users/users.controller';
+import { UsersService } from '@/users/users.service';
 
 @Module({
   controllers: [UsersController],

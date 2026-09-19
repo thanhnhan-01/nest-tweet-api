@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 
-import { CreateUserDto } from 'src/users/dtos/create-user.dto';
-import { UsersService } from 'src/users/users.service';
+import { CreateUserDto } from '@/users/dtos/create-user.dto';
+import { UsersService } from '@/users/users.service';
 
 // http://localhost:3000/users
 

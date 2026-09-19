@@ -1,13 +1,13 @@
 import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { Profile } from 'src/profile/profile.entity';
+import { Profile } from '@/profile/profile.entity';
 
-import { Tweet } from 'src/tweet/tweet.entity';
+import { Tweet } from '@/tweet/tweet.entity';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({
     type: 'varchar',
@@ -15,7 +15,7 @@ export class User {
     length: 24,
     unique: true,
   })
-  username: string;
+  username!: string;
 
   @Column({
     type: 'varchar',
@@ -23,26 +23,26 @@ export class User {
     length: 100,
     unique: true,
   })
-  email: string;
+  email!: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
     length: 100,
   })
-  password: string;
+  password!: string;
 
   @OneToOne(() => Profile, (profile) => profile.user, { cascade: ['insert'] })
   profile?: Profile;
 
   @OneToMany(() => Tweet, (tweet) => tweet.user)
-  tweets: Tweet[];
+  tweets!: Tweet[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 
   // @DeleteDateColumn()
   // deleteAt: Date;

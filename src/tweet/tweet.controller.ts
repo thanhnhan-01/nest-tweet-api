@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 
-import { CreateTweetDto } from 'src/tweet/dto/create-tweet.dto';
-import { TweetService } from 'src/tweet/tweet.service';
+import { CreateTweetDto } from '@/tweet/dto/create-tweet.dto';
+import { TweetService } from '@/tweet/tweet.service';
 
 // http://localhost:3000/tweet
 

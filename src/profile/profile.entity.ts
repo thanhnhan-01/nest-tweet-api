@@ -1,31 +1,31 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { User } from 'src/users/user.entity';
+import { User } from '@/users/user.entity';
 
 @Entity()
 export class Profile {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ type: 'varchar', nullable: true, length: 100 })
-  firstName: string;
+  firstName!: string;
 
   @Column({ type: 'varchar', nullable: true, length: 100 })
-  lastName: string;
+  lastName!: string;
 
   @Column({ type: 'varchar', nullable: true, length: 10 })
-  gender: string;
+  gender!: string;
 
   @Column({ type: 'timestamp', nullable: true })
-  dateOfBirth: Date;
+  dateOfBirth!: Date;
 
   @Column({ type: 'text', nullable: true })
-  bio: string;
+  bio!: string;
 
   @Column({ type: 'text', nullable: true })
-  profileImage: string;
+  profileImage!: string;
 
   @OneToOne(() => User, (user) => user.profile, { onDelete: 'CASCADE' })
   @JoinColumn()
-  user: User;
+  user!: User;
 }
